@@ -15,23 +15,23 @@ export default function CheckoutPage() {
   const durationStr =
     data.hours > 0 || data.minutes > 0
       ? `${data.hours}h ${data.minutes > 0 ? `${data.minutes}min` : ""}`.trim()
-      : "Sin seleccionar";
+      : "Not selected";
 
   const summaryItems = [
-    { icon: <MapPin size={16} className="text-[#00C9A7]" />, label: "Ubicación", value: "2153 NW 2nd Ave" },
-    { icon: <Car size={16} className="text-[#00C9A7]" />, label: "Matrícula", value: data.plate || "—" },
-    { icon: <Clock size={16} className="text-[#00C9A7]" />, label: "Duración", value: durationStr },
+    { icon: <MapPin size={16} className="text-[#00C9A7]" />, label: "Location", value: "2153 NW 2nd Ave" },
+    { icon: <Car size={16} className="text-[#00C9A7]" />, label: "License plate", value: data.plate || "—" },
+    { icon: <Clock size={16} className="text-[#00C9A7]" />, label: "Duration", value: durationStr },
     {
       icon: <Tag size={16} className="text-[#00C9A7]" />,
-      label: "Tipo",
-      value: data.parkingType === "short" ? "Corto plazo" : "Largo plazo",
+      label: "Type",
+      value: data.parkingType === "short" ? "Short-term" : "Long-term",
     },
   ];
 
   const payOptions: { id: PayMethod; label: string; icon: React.ReactNode }[] = [
     {
       id: "card",
-      label: "Tarjeta de crédito/débito",
+      label: "Credit/Debit card",
       icon: (
         <div className="w-9 h-6 rounded bg-slate-800 flex items-center justify-center shrink-0">
           <div className="w-5 h-1.5 rounded bg-[#00C9A7]" />
@@ -66,7 +66,7 @@ export default function CheckoutPage() {
       <TopBar backHref="/guest/parking" step={3} />
 
       <main className="max-w-sm mx-auto px-5 py-6 flex flex-col gap-5">
-        <h2 className="text-xl font-black text-slate-900">Resumen del pago</h2>
+        <h2 className="text-xl font-black text-slate-900">Payment summary</h2>
 
         {/* Summary card */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
@@ -92,7 +92,7 @@ export default function CheckoutPage() {
 
         {/* Payment methods */}
         <div>
-          <h3 className="text-sm font-bold text-slate-900 mb-3">Método de pago</h3>
+          <h3 className="text-sm font-bold text-slate-900 mb-3">Payment method</h3>
           <div className="flex flex-col gap-2.5">
             {payOptions.map((opt) => (
               <button
@@ -120,9 +120,9 @@ export default function CheckoutPage() {
 
         {/* Total */}
         <div className="flex items-center justify-between bg-[#0f172a] rounded-2xl px-5 py-4">
-          <span className="text-white/60 text-sm font-semibold">Total a pagar</span>
+          <span className="text-white/60 text-sm font-semibold">Total to pay</span>
           <span className="text-[#00C9A7] text-3xl font-black">
-            ${data.total.toFixed(2)}
+            {data.total.toLocaleString("en-US", { style: "currency", currency: "USD" })}
           </span>
         </div>
 
@@ -132,12 +132,12 @@ export default function CheckoutPage() {
           className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#00C9A7] to-[#0099cc] text-white font-bold py-4 rounded-2xl text-[15px] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,201,167,.45)] transition-all"
         >
           <ShieldCheck size={20} />
-          Pagar ahora
+          Pay now
         </button>
 
         <p className="flex items-center justify-center gap-1.5 text-slate-400 text-xs">
           <ShieldCheck size={13} />
-          Pago seguro con encriptación SSL 256-bit
+          Secure payment with 256-bit SSL encryption
         </p>
       </main>
     </div>

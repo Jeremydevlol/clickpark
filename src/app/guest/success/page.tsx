@@ -12,12 +12,12 @@ export default function SuccessPage() {
       : "—";
 
   const now = new Date();
-  const dateStr = now.toLocaleDateString("es-ES", {
+  const dateStr = now.toLocaleDateString("en-US", {
     day: "2-digit",
     month: "long",
     year: "numeric",
   });
-  const timeStr = now.toLocaleTimeString("es-ES", {
+  const timeStr = now.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -31,9 +31,9 @@ export default function SuccessPage() {
         </div>
 
         <div>
-          <h1 className="text-2xl font-black text-slate-900 mb-2">¡Pago confirmado!</h1>
+          <h1 className="text-2xl font-black text-slate-900 mb-2">Payment confirmed!</h1>
           <p className="text-slate-500 text-sm leading-relaxed max-w-xs mx-auto">
-            Tu plaza de aparcamiento ha sido reservada con éxito. Recibirás una confirmación por SMS.
+            Your parking spot has been reserved successfully. You will receive an SMS confirmation.
           </p>
         </div>
 
@@ -50,18 +50,18 @@ export default function SuccessPage() {
               ClickPark™
             </div>
             <span className="bg-[#00C9A7] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
-              Confirmado
+              Confirmed
             </span>
           </div>
 
           {/* Rows */}
           {[
-            ["Ubicación", "2153 NW 2nd Ave"],
-            ["Matrícula", data.plate || "—"],
-            ["Duración", durationStr],
-            ["Tipo", data.parkingType === "short" ? "Corto plazo" : "Largo plazo"],
-            ["Fecha", dateStr],
-            ["Hora entrada", timeStr],
+            ["Location", "2153 NW 2nd Ave"],
+            ["License plate", data.plate || "—"],
+            ["Duration", durationStr],
+            ["Type", data.parkingType === "short" ? "Short-term" : "Long-term"],
+            ["Date", dateStr],
+            ["Entry time", timeStr],
           ].map(([k, v]) => (
             <div key={k} className="flex justify-between items-center px-5 py-3 border-b border-slate-100">
               <span className="text-slate-400 text-sm">{k}</span>
@@ -74,9 +74,9 @@ export default function SuccessPage() {
 
           {/* Total */}
           <div className="flex justify-between items-center px-5 py-4">
-            <span className="text-slate-700 font-bold">Total pagado</span>
+            <span className="text-slate-700 font-bold">Total paid</span>
             <span className="text-[#00C9A7] text-2xl font-black">
-              ${data.total.toFixed(2)}
+              {data.total.toLocaleString("en-US", { style: "currency", currency: "USD" })}
             </span>
           </div>
         </div>
@@ -86,11 +86,11 @@ export default function SuccessPage() {
           href="/"
           className="w-full bg-[#00C9A7] hover:bg-[#00a88c] text-white font-bold py-4 rounded-2xl text-center text-[15px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,201,167,.4)]"
         >
-          Nueva reserva
+          New booking
         </Link>
 
         <p className="text-slate-400 text-xs">
-          ID de reserva:{" "}
+          Booking ID:{" "}
           <span className="font-mono font-bold text-slate-600">
             CP-{Math.random().toString(36).slice(2,8).toUpperCase()}
           </span>

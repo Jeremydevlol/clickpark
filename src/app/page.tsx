@@ -21,7 +21,7 @@ export default function Home() {
           <button
             key={lang}
             className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all ${
-              lang === "ES"
+              lang === "EN"
                 ? "bg-[#00C9A7] border-[#00C9A7] text-white"
                 : "bg-transparent border-white/30 text-white/60 hover:border-white/60"
             }`}
@@ -63,7 +63,7 @@ export default function Home() {
           href="/guest/phone"
           className="w-full bg-[#00C9A7] hover:bg-[#00a88c] text-white font-bold py-4 rounded-2xl text-center text-[15px] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,201,167,.4)] active:translate-y-0"
         >
-          Continuar como invitado
+          Continue as guest
         </Link>
 
         {/* Login / Signup */}
@@ -72,25 +72,25 @@ export default function Home() {
             href="/guest/phone"
             className="flex-1 bg-white/10 hover:bg-white/18 border border-white/20 text-white font-semibold py-3 rounded-2xl text-center text-sm transition-all"
           >
-            Iniciar sesión
+            Log in
           </Link>
           <Link
             href="/guest/phone"
             className="flex-1 bg-transparent hover:bg-white/10 border border-white/25 text-white font-semibold py-3 rounded-2xl text-center text-sm transition-all"
           >
-            Registrarse
+            Sign up
           </Link>
         </div>
 
         {/* Divider */}
         <div className="flex items-center gap-3">
           <div className="flex-1 h-px bg-white/15" />
-          <span className="text-white/40 text-xs font-medium">o</span>
+          <span className="text-white/40 text-xs font-medium">or</span>
           <div className="flex-1 h-px bg-white/15" />
         </div>
 
         {/* SSO */}
-        <p className="text-center text-white/50 text-xs font-medium">Entrar con</p>
+        <p className="text-center text-white/50 text-xs font-medium">Continue with</p>
         <div className="flex justify-center gap-4">
           {/* Google */}
           <button className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all hover:scale-105">

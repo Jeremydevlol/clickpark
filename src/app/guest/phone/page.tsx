@@ -8,10 +8,10 @@ import { Smartphone } from "lucide-react";
 export default function PhonePage() {
   const router = useRouter();
   const { set } = useParkingCtx();
-  const [phone, setPhone] = useState("636029139");
+  const [phone, setPhone] = useState("");
   const [agreed, setAgreed] = useState(false);
 
-  const isValid = phone.replace(/\s/g, "").length >= 9 && agreed;
+  const isValid = phone.replace(/\s/g, "").length >= 10 && agreed;
 
   function handleConfirm() {
     if (!isValid) return;
@@ -32,18 +32,18 @@ export default function PhonePage() {
         {/* Heading */}
         <div>
           <h1 className="text-2xl font-black text-slate-900 mb-2">
-            Ingresa tu número de teléfono
+            Enter your phone number
           </h1>
           <p className="text-slate-500 text-sm leading-relaxed max-w-xs mx-auto">
-            Gracias por elegir ClickPark™, la solución definitiva para el aparcamiento
+            Thanks for choosing ClickPark™, the easiest way to park
           </p>
         </div>
 
         {/* Phone input */}
         <div className="w-full flex border-2 border-slate-200 focus-within:border-[#00C9A7] rounded-2xl overflow-hidden bg-white transition-colors shadow-sm">
           <div className="flex items-center gap-2 px-4 border-r border-slate-200 shrink-0">
-            <span className="text-2xl">🇪🇸</span>
-            <span className="font-bold text-slate-800 text-sm">+34</span>
+            <span className="text-2xl">🇺🇸</span>
+            <span className="font-bold text-slate-800 text-sm">+1</span>
             <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 text-slate-400">
               <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
@@ -52,7 +52,7 @@ export default function PhonePage() {
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="Número de teléfono"
+            placeholder="Phone number"
             className="flex-1 px-4 py-4 text-base font-medium text-slate-800 placeholder-slate-400 outline-none bg-transparent"
             maxLength={12}
           />
@@ -68,7 +68,7 @@ export default function PhonePage() {
               : "bg-slate-200 text-slate-400 cursor-not-allowed"
           }`}
         >
-          Confirmar
+          Confirm
         </button>
 
         {/* Terms */}
@@ -80,13 +80,13 @@ export default function PhonePage() {
             className="custom-check mt-0.5"
           />
           <span className="text-sm text-slate-500 leading-relaxed">
-            Acepto los{" "}
+            I agree to the{" "}
             <a href="#" className="text-[#00C9A7] font-semibold hover:underline">
-              Términos y Condiciones
+              Terms and Conditions
             </a>
-            . Tus datos serán tratados de acuerdo con nuestra{" "}
+            . Your data will be processed according to our{" "}
             <a href="#" className="text-[#00C9A7] font-semibold hover:underline">
-              Política de Privacidad
+              Privacy Policy
             </a>
             .
           </span>

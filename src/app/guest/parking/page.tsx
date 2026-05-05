@@ -31,6 +31,10 @@ function calcPrice(hours: number, mins: number): number {
   return parseFloat((Math.max(totalMins, 30) * rate).toFixed(2));
 }
 
+function formatUsd(amount: number): string {
+  return amount.toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
+
 export default function ParkingPage() {
   const router = useRouter();
   const { data, set } = useParkingCtx();
@@ -79,20 +83,20 @@ export default function ParkingPage() {
             <p className="text-slate-400 text-xs">2153 NW 2nd Ave</p>
           </div>
           <a href="#" className="text-[#00C9A7] text-sm font-semibold whitespace-nowrap hover:underline">
-            Cambiar
+            Change
           </a>
         </div>
 
         {/* Scan plate */}
         <button className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border-2 border-[#00C9A7] bg-[#e6faf7] text-[#00a88c] font-semibold text-sm hover:bg-[#00C9A7] hover:text-white transition-all">
           <ScanLine size={20} />
-          Escanear matrícula
+          Scan plate
         </button>
 
         {/* Divider */}
         <div className="flex items-center gap-3">
           <div className="flex-1 h-px bg-slate-200" />
-          <span className="text-slate-400 text-xs font-medium">o</span>
+          <span className="text-slate-400 text-xs font-medium">or</span>
           <div className="flex-1 h-px bg-slate-200" />
         </div>
 
@@ -108,7 +112,7 @@ export default function ParkingPage() {
               type="text"
               value={plate}
               onChange={(e) => setPlate(e.target.value.toUpperCase())}
-              placeholder="Matrícula"
+              placeholder="License plate"
               className="flex-1 px-3 py-3.5 text-sm font-bold uppercase tracking-widest outline-none bg-transparent placeholder-slate-300"
               maxLength={10}
             />
@@ -118,7 +122,7 @@ export default function ParkingPage() {
             onChange={(e) => setState(e.target.value)}
             className="w-32 border-2 border-slate-200 focus:border-[#00C9A7] rounded-2xl px-3 py-3.5 text-sm bg-white text-slate-700 font-medium outline-none cursor-pointer shadow-sm"
           >
-            <option value="">Estado</option>
+            <option value="">State</option>
             {STATES.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -137,14 +141,14 @@ export default function ParkingPage() {
                   : "text-slate-500 hover:bg-slate-50"
               }`}
             >
-              {type === "short" ? "Corto plazo" : "Largo plazo"}
+              {type === "short" ? "Short-term" : "Long-term"}
             </button>
           ))}
         </div>
 
         {/* Duration */}
         <div>
-          <h3 className="text-sm font-bold text-slate-900 mb-3">Elige la duración</h3>
+          <h3 className="text-sm font-bold text-slate-900 mb-3">Choose duration</h3>
           <div className="flex items-center justify-center gap-3 bg-white border-2 border-slate-200 rounded-2xl px-5 py-3 shadow-sm">
             <select
               value={hours}
@@ -182,7 +186,7 @@ export default function ParkingPage() {
                   : "border-slate-200 bg-white text-slate-700 hover:border-[#00C9A7] hover:-translate-y-0.5"
               }`}
             >
-              {q.label} · ${q.price.toFixed(2)}
+              {q.label} · {formatUsd(q.price)}
             </button>
           ))}
         </div>
@@ -191,7 +195,7 @@ export default function ParkingPage() {
         <div className="flex items-center justify-between bg-white border-2 border-slate-200 rounded-2xl px-5 py-4 shadow-sm">
           <span className="text-sm font-semibold text-slate-500">Total</span>
           <span className="text-2xl font-black text-[#00C9A7]">
-            ${total.toFixed(2)}
+            {formatUsd(total)}
           </span>
         </div>
 
@@ -205,7 +209,7 @@ export default function ParkingPage() {
               : "bg-slate-200 text-slate-400 cursor-not-allowed"
           }`}
         >
-          Continuar
+          Continue
         </button>
       </main>
     </div>
